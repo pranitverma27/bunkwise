@@ -1,0 +1,59 @@
+Attendance Risk Predictor — Full Product Specification
+Product Overview
+Attendance Risk Predictor is a daily-use web app for Indian college students. The student uploads their timetable once per semester, the app parses it using AI, and from that point forward automatically tracks how many classes of each subject have been conducted based on the calendar. The student periodically logs how many they attended or missed — whichever they remember. The app calculates current attendance %, risk level, safe bunks remaining, and suggests optimal days to skip around long weekends.
+Core Value Proposition
+For the student
+Zero setup — one timetable upload
+Always knows exact safe bunks left
+Plans long weekends scientifically
+Gets dramatic, funny warnings before it’s too late
+Shareable result cards for WhatsApp / Instagram
+
+Product moat
+Lab vs lecture tracked separately
+Holiday-aware auto-calculation
+Bunk optimizer across subjects
+One upload per semester — data persists
+Semester history preserved on rollover
+
+Complete User Flow
+Onboarding (once per account)
+1. Student visits the app and signs in with Google OAuth or magic link email. No password form.
+2. Student is taken to semester setup screen.
+3. Student picks semester term: Jan–May, Jul–Nov, or Custom date range.
+4. Student uploads timetable: PDF, JPG, PNG, or Screenshot.
+5. AI parses the timetable.
+6. Student reviews extracted subjects on a correction screen.
+7. Student marks holidays on a calendar.
+8. Student enters initial attendance: Classes attended, Classes missed.
+9. Student lands on the main dashboard.
+
+Daily Use
+- Open dashboard
+- View risk scores
+- Update attendance
+- Simulate bunks
+- Override conducted class count when required
+
+Critical Edge Case
+Colleges often reschedule classes or cancel lectures. Therefore: Conducted class override must be one tap away.
+
+Feature Specification
+Timetable Parser
+Accepted Formats: PDF, JPG / PNG / WEBP, WhatsApp-compressed images, Rotated scans, Handwritten timetables.
+Extracted Data: Subject name, Subject code, Session type (Lecture/Lab/Tutorial), Day of week, Time slot, Weekly frequency.
+
+Risk Tier System
+- Chill: Above 85% — “All good bhai.”
+- Safe: 80–85% — “You’re fine.”
+- Risky: 75–80% — “One bunk away from trouble.”
+- Danger: 70–75% — “Ek aur bunk and you’re explaining yourself.”
+- HOD Territory: Below 70% — “HOD is personally waiting.”
+
+Bunk Planner
+- Scenario Simulator: Pick future date, Simulate attendance impact.
+- Long Weekend Detector: Detect Friday/Monday holidays, Predict 3–4 day weekends.
+- AI Bunk Optimizer: Best skip plan for N days off.
+
+Shareable Result Cards
+- Meme-style cards, Instagram Story ratio (9:16), Randomized funny copy.

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BunkWise - Onboarding</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#131313",
+                      "tertiary-fixed": "#7df4ff",
+                      "on-primary": "#520072",
+                      "secondary-fixed": "#79ff5b",
+                      "surface-container-high": "#2a2a2a",
+                      "surface": "#131313",
+                      "inverse-primary": "#9800d0",
+                      "secondary-container": "#2ff801",
+                      "surface-container-highest": "#353534",
+                      "on-secondary": "#053900",
+                      "on-surface": "#e5e2e1",
+                      "tertiary": "#00dbe9",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container-low": "#1c1b1b",
+                      "outline": "#9d8ba0",
+                      "on-tertiary": "#00363a",
+                      "on-tertiary-container": "#000607",
+                      "surface-variant": "#353534",
+                      "outline-variant": "#504254",
+                      "surface-container-lowest": "#0e0e0e",
+                      "primary": "#ebb2ff",
+                      "on-tertiary-fixed": "#002022",
+                      "error-container": "#93000a",
+                      "inverse-on-surface": "#313030",
+                      "error": "#ffb4ab",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#ffffff",
+                      "surface-tint": "#ebb2ff",
+                      "on-background": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-surface-variant": "#d4c0d7",
+                      "secondary-fixed-dim": "#2ae500",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#00dbe9",
+                      "on-tertiary-fixed-variant": "#004f54",
+                      "on-secondary-container": "#0f6d00",
+                      "on-secondary-fixed": "#022100",
+                      "primary-fixed": "#f8d8ff",
+                      "on-primary-fixed": "#320047",
+                      "on-secondary-fixed-variant": "#095300",
+                      "surface-dim": "#131313",
+                      "primary-fixed-dim": "#ebb2ff",
+                      "on-primary-fixed-variant": "#74009f",
+                      "surface-bright": "#393939",
+                      "primary-container": "#bc13fe",
+                      "tertiary-container": "#00848d",
+                      "secondary": "#d7ffc5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "gutter": "16px",
+                      "container-padding": "20px",
+                      "stack-lg": "40px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Space Grotesk"],
+                      "label-md": ["JetBrains Mono"],
+                      "display-lg": ["Space Grotesk"],
+                      "headline-lg-mobile": ["Space Grotesk"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .drag-zone {
+            background: rgba(188, 19, 254, 0.03);
+            border: 2px dashed rgba(235, 178, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .drag-zone:hover {
+            border-color: #ebb2ff;
+            background: rgba(188, 19, 254, 0.08);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.2);
+        }
+        .step-indicator-active {
+            width: 32px;
+            background: #ebb2ff;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen font-body-md overflow-x-hidden">
+<!-- Header Navigation -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-base bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="font-headline-md text-headline-md font-bold tracking-tight text-primary dark:text-primary">BunkWise</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface-variant dark:text-on-surface-variant cursor-pointer hover:bg-white/5 transition-colors p-2 rounded-full">account_circle</span>
+</div>
+</header>
+<main class="pt-24 pb-32 px-container-padding max-w-[1200px] mx-auto">
+<!-- Onboarding Progress -->
+<div class="mb-stack-lg flex flex-col items-center">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-4 text-center">Set Your Game Plan</h1>
+<div class="flex gap-2 items-center">
+<div class="h-1.5 step-indicator-active rounded-full transition-all duration-300"></div>
+<div class="h-1.5 w-12 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 w-12 bg-surface-container-highest rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-md">
+<!-- Left Column: Input Sections -->
+<div class="lg:col-span-8 flex flex-col gap-stack-md">
+<!-- Step 1: Semester Selection -->
+<section class="glass-card p-stack-md rounded-xl">
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="bg-primary/20 text-primary p-2 rounded-lg material-symbols-outlined">calendar_today</span>
+<h2 class="font-headline-md text-headline-md">Step 1: Choose Your Semester</h2>
+</div>
+<p class="text-on-surface-variant mb-stack-md font-body-md">Tell us which cycle you're currently in to sync your academic calendar.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<button class="flex flex-col items-start p-4 rounded-xl border border-primary bg-primary/10 transition-all hover:bg-primary/20">
+<span class="font-label-md text-label-md text-primary mb-1">Jan - May</span>
+<span class="text-on-surface/60 font-body-md text-sm">Spring Semester</span>
+</button>
+<button class="flex flex-col items-start p-4 rounded-xl border border-white/10 glass-card transition-all hover:border-primary/50">
+<span class="font-label-md text-label-md text-on-surface mb-1">Jul - Nov</span>
+<span class="text-on-surface/60 font-body-md text-sm">Autumn Semester</span>
+</button>
+<button class="flex flex-col items-start p-4 rounded-xl border border-white/10 glass-card transition-all hover:border-primary/50">
+<span class="font-label-md text-label-md text-on-surface mb-1">Custom</span>
+<span class="text-on-surface/60 font-body-md text-sm">Set specific dates</span>
+</button>
+</div>
+</section>
+<!-- Step 2: Timetable Upload -->
+<section class="glass-card p-stack-md rounded-xl">
+<div class="flex items-center gap-3 mb-stack-sm">
+<span class="bg-tertiary/20 text-tertiary p-2 rounded-lg material-symbols-outlined">upload_file</span>
+<h2 class="font-headline-md text-headline-md">Step 2: Timetable Intelligence</h2>
+</div>
+<p class="text-on-surface-variant mb-stack-md font-body-md">Drop your timetable image or PDF. Our AI handles the boring part of mapping your hours.</p>
+<div class="drag-zone rounded-xl p-stack-lg flex flex-col items-center justify-center text-center cursor-pointer min-h-[240px]">
+<div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-2">Drag &amp; Drop Timetable</h3>
+<p class="text-on-surface-variant font-body-md mb-6 max-w-md mx-auto">Supports PDF, JPG, PNG or Screenshots. Make sure the text is clearly visible.</p>
+<button class="px-8 py-3 bg-primary text-on-primary font-label-md text-label-md rounded-full font-bold hover:scale-105 transition-transform active:scale-95">
+                            Browse Files
+                        </button>
+</div>
+<div class="mt-stack-sm flex items-center gap-2 px-2">
+<span class="material-symbols-outlined text-secondary-fixed text-lg">verified_user</span>
+<p class="text-on-surface-variant text-sm font-label-sm">Privacy first: We only parse text to build your schedule.</p>
+</div>
+</section>
+<div class="flex justify-end pt-4">
+<button class="px-12 py-4 bg-primary text-on-primary font-headline-md text-headline-md rounded-xl font-bold flex items-center gap-2 hover:shadow-[0_0_30px_rgba(188,19,254,0.4)] transition-all active:scale-95">
+                        Initialize BunkWise
+                        <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+</div>
+<!-- Right Column: How it Works & Visuals -->
+<div class="lg:col-span-4 flex flex-col gap-stack-md">
+<!-- AI Parsing Explainers -->
+<section class="glass-card p-stack-md rounded-xl border-l-4 border-tertiary">
+<h3 class="font-headline-md text-headline-md mb-stack-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">auto_awesome</span>
+                        How it works
+                    </h3>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-8 h-8 shrink-0 rounded-full bg-surface-container-highest flex items-center justify-center font-label-md text-label-md">1</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">OCR Analysis</h4>
+<p class="text-on-surface-variant text-sm font-body-md">We scan your upload for course codes, timings, and venue patterns.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 shrink-0 rounded-full bg-surface-container-highest flex items-center justify-center font-label-md text-label-md">2</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">Schedule Logic</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Our algorithm determines lab slots, theory lectures, and free periods.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 shrink-0 rounded-full bg-surface-container-highest flex items-center justify-center font-label-md text-label-md">3</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">Risk Mapping</h4>
+<p class="text-on-surface-variant text-sm font-body-md">Your 75% target is calculated based on total working days in the semester.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Visual Aesthetic Element -->
+<div class="relative rounded-xl overflow-hidden aspect-square lg:aspect-video group">
+<img alt="Cyberpunk Data Visualization" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A futuristic cyberpunk digital data visualization displayed on a sleek glass interface in a dark, moody setting. Glowing neon purple and cyan lines weave through complex 3D geometric structures and code fragments. The lighting is low-key with intense neon accents that cast soft glows on the surrounding charcoal-colored surfaces. The atmosphere is high-tech, professional, and energetically modern, reflecting a Gen-Z professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxR8pGrzF7SBACunvOk3zpGXTzBJIItBV577ZqXs1wG0PKoVsxiNyhmxMAhfx4TBVHiYvN5wq29f6sIMrY_O7Z6nf3I2TxEqzXDUdjogdahNM9JUPYuDds_Qpe_fKDLQnVGbSl4Zfw1vYfeMC1q197UT81mADYClDBqQJHlWdZT2_f8iLg_6qiIcxUn2bIslES3aibkEc44GVICoMOKBvCSNnWe2shZzEvIfShe2cHW-Nb7wtAwsvjcY1dFEUrThpLfS-Bdm8e68U"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4 right-4">
+<div class="glass-card p-3 rounded-lg flex items-center gap-3">
+<div class="w-10 h-10 bg-secondary-fixed/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary-fixed">bolt</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-secondary-fixed">SYSTEM STATUS</p>
+<p class="text-xs font-body-md">Optimizing Attendance Flow</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Wit/Humor Quote -->
+<div class="p-stack-md rounded-xl bg-surface-container flex items-start gap-4 italic border border-white/5">
+<span class="material-symbols-outlined text-primary-container opacity-50">format_quote</span>
+<p class="text-on-surface-variant font-body-md text-sm">"The difference between a topper and a bunk-pro is just a well-parsed timetable. Let's make sure you don't accidentally meet the HOD."</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Status -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-white/10">
+<div class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Subjects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</footer>
+</body></html>

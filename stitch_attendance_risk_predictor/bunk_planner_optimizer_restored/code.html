@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BunkWise | Planner &amp; Optimizer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@300..700&amp;family=JetBrains+Mono:wght@300..700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.06);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card-active {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .neon-glow-purple {
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.3);
+        }
+        .neon-glow-lime {
+            box-shadow: 0 0 20px rgba(121, 255, 91, 0.3);
+        }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #131313; }
+        ::-webkit-scrollbar-thumb { background: #353534; border-radius: 10px; }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#131313",
+                      "tertiary-fixed": "#7df4ff",
+                      "on-primary": "#520072",
+                      "secondary-fixed": "#79ff5b",
+                      "surface-container-high": "#2a2a2a",
+                      "surface": "#131313",
+                      "inverse-primary": "#9800d0",
+                      "secondary-container": "#2ff801",
+                      "surface-container-highest": "#353534",
+                      "on-secondary": "#053900",
+                      "on-surface": "#e5e2e1",
+                      "tertiary": "#00dbe9",
+                      "inverse-surface": "#e5e2e1",
+                      "surface-container-low": "#1c1b1b",
+                      "outline": "#9d8ba0",
+                      "on-tertiary": "#00363a",
+                      "on-tertiary-container": "#000607",
+                      "surface-variant": "#353534",
+                      "outline-variant": "#504254",
+                      "surface-container-lowest": "#0e0e0e",
+                      "primary": "#ebb2ff",
+                      "on-tertiary-fixed": "#002022",
+                      "error-container": "#93000a",
+                      "inverse-on-surface": "#313030",
+                      "error": "#ffb4ab",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-container": "#ffffff",
+                      "surface-tint": "#ebb2ff",
+                      "on-background": "#e5e2e1",
+                      "surface-container": "#201f1f",
+                      "on-surface-variant": "#d4c0d7",
+                      "secondary-fixed-dim": "#2ae500",
+                      "on-error": "#690005",
+                      "tertiary-fixed-dim": "#00dbe9",
+                      "on-tertiary-fixed-variant": "#004f54",
+                      "on-secondary-container": "#0f6d00",
+                      "on-secondary-fixed": "#022100",
+                      "primary-fixed": "#f8d8ff",
+                      "on-primary-fixed": "#320047",
+                      "on-secondary-fixed-variant": "#095300",
+                      "surface-dim": "#131313",
+                      "primary-fixed-dim": "#ebb2ff",
+                      "on-primary-fixed-variant": "#74009f",
+                      "surface-bright": "#393939",
+                      "primary-container": "#bc13fe",
+                      "tertiary-container": "#00848d",
+                      "secondary": "#d7ffc5"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "12px",
+                      "stack-md": "24px",
+                      "gutter": "16px",
+                      "container-padding": "20px",
+                      "stack-lg": "40px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Space Grotesk"],
+                      "body-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-lg": ["Space Grotesk"],
+                      "label-md": ["JetBrains Mono"],
+                      "display-lg": ["Space Grotesk"],
+                      "headline-lg-mobile": ["Space Grotesk"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md text-body-md min-h-screen pb-24">
+<!-- TopNavBar Shell -->
+<nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-base bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-primary dark:text-primary">BunkWise</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 transition-transform duration-200">
+<span class="material-symbols-outlined text-primary">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="pt-20 px-container-padding max-w-[1200px] mx-auto space-y-stack-md">
+<!-- AI Verdict Hero Section -->
+<section class="glass-card-active p-6 rounded-xl relative overflow-hidden neon-glow-purple">
+<div class="absolute -right-10 -top-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="relative z-10 space-y-2">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-md text-label-md text-secondary-fixed tracking-widest uppercase">AI OPTIMIZER VERDICT</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-primary-fixed leading-tight">
+                Safe to bunk Friday for a 4-day trip to Goa!
+            </h1>
+<p class="text-on-surface-variant/80 font-body-md">Your current streak and low proxy-risk make this the optimal bunk window.</p>
+<div class="mt-6 flex flex-col md:flex-row items-center gap-4">
+<div class="w-full flex-1 bg-white/5 p-4 rounded-lg border border-white/10">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Bunk Probability</p>
+<p class="font-headline-md text-headline-md text-secondary-fixed">94% <span class="text-label-sm font-normal">SAFE</span></p>
+</div>
+<div class="w-full flex-1 bg-white/5 p-4 rounded-lg border border-white/10">
+<p class="font-label-sm text-label-sm text-on-surface-variant">Proxy Success Rate</p>
+<p class="font-headline-md text-headline-md text-tertiary">High</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Simulator & Calendar Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-stack-md">
+<!-- Left Column: Calendar & Selector -->
+<div class="lg:col-span-7 space-y-stack-md">
+<div class="glass-card p-6 rounded-xl space-y-4">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md">Bunk Simulator</h2>
+<button class="bg-primary text-on-primary font-label-md text-label-md px-4 py-2 rounded-full hover:brightness-110 active:scale-95 transition-all">
+                        SELECT DATES
+                    </button>
+</div>
+<!-- Month Header -->
+<div class="flex justify-between items-center px-2">
+<span class="font-label-md text-label-md">OCTOBER 2023</span>
+<div class="flex gap-2">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">chevron_left</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-primary">chevron_right</span>
+</div>
+</div>
+<!-- Calendar Grid -->
+<div class="grid grid-cols-7 gap-2 text-center">
+<!-- Days Header -->
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">M</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">T</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">W</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">T</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">F</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">S</div>
+<div class="font-label-sm text-label-sm text-on-surface-variant py-2">S</div>
+<!-- Calendar Dates -->
+<div class="p-2 font-label-sm text-label-sm opacity-20">25</div>
+<div class="p-2 font-label-sm text-label-sm opacity-20">26</div>
+<div class="p-2 font-label-sm text-label-sm opacity-20">27</div>
+<div class="p-2 font-label-sm text-label-sm opacity-20">28</div>
+<div class="p-2 font-label-sm text-label-sm opacity-20">29</div>
+<div class="p-2 font-label-sm text-label-sm opacity-20">30</div>
+<div class="p-2 font-label-sm text-label-sm">1</div>
+<div class="p-2 font-label-sm text-label-sm">2</div>
+<div class="p-2 font-label-sm text-label-sm">3</div>
+<div class="p-2 font-label-sm text-label-sm">4</div>
+<div class="p-2 font-label-sm text-label-sm">5</div>
+<div class="p-2 font-label-sm text-label-sm">6</div>
+<div class="p-2 font-label-sm text-label-sm bg-surface-container-high rounded-md">7</div>
+<div class="p-2 font-label-sm text-label-sm bg-surface-container-high rounded-md">8</div>
+<div class="p-2 font-label-sm text-label-sm">9</div>
+<div class="p-2 font-label-sm text-label-sm">10</div>
+<div class="p-2 font-label-sm text-label-sm">11</div>
+<div class="p-2 font-label-sm text-label-sm">12</div>
+<!-- Long Weekend Highlighted -->
+<div class="p-2 font-label-sm text-label-sm border-2 border-secondary-fixed/50 bg-secondary-fixed/10 text-secondary-fixed rounded-md relative cursor-pointer">
+                        13
+                        <span class="absolute -top-1 -right-1 w-2 h-2 bg-secondary-fixed rounded-full animate-pulse"></span>
+</div>
+<div class="p-2 font-label-sm text-label-sm bg-secondary-fixed/20 text-secondary-fixed rounded-md">14</div>
+<div class="p-2 font-label-sm text-label-sm bg-secondary-fixed/20 text-secondary-fixed rounded-md">15</div>
+<div class="p-2 font-label-sm text-label-sm">16</div>
+<div class="p-2 font-label-sm text-label-sm">17</div>
+<div class="p-2 font-label-sm text-label-sm">18</div>
+<div class="p-2 font-label-sm text-label-sm">19</div>
+<div class="p-2 font-label-sm text-label-sm">20</div>
+<div class="p-2 font-label-sm text-label-sm bg-surface-container-high rounded-md">21</div>
+<div class="p-2 font-label-sm text-label-sm bg-surface-container-high rounded-md">22</div>
+</div>
+<div class="flex items-center gap-4 pt-2 border-t border-white/5">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 bg-secondary-fixed rounded-full"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Long Weekend</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 border border-primary bg-primary/20 rounded-full"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Selected to Bunk</span>
+</div>
+</div>
+</div>
+<!-- Upcoming Long Weekends List -->
+<div class="glass-card p-6 rounded-xl space-y-4">
+<h3 class="font-label-md text-label-md text-primary uppercase tracking-widest">Upcoming Getaways</h3>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center font-label-md text-label-md text-tertiary">13-15</div>
+<div>
+<p class="font-body-md font-bold">Dussehra Break</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Fri - Sun | 3 Days</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-fixed opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-surface flex items-center justify-center font-label-md text-label-md text-tertiary">21-24</div>
+<div>
+<p class="font-body-md font-bold">Diwali Weekend</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Sat - Tue | 4 Days</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary-fixed opacity-0 group-hover:opacity-100 transition-opacity">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Impact Analyzer -->
+<div class="lg:col-span-5 space-y-stack-md">
+<div class="glass-card p-6 rounded-xl space-y-6">
+<h2 class="font-headline-md text-headline-md">Impact Projection</h2>
+<!-- Subject List -->
+<div class="space-y-6">
+<!-- Subject 1 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-body-md font-bold">Data Structures</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Miss: Friday Lab (2 units)</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-error">78% ➔ 74%</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-error to-error/50 rounded-full" style="width: 74%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-error/80 italic">Warning: Approaching HOD Territory (75%)</p>
+</div>
+<!-- Subject 2 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-body-md font-bold">Machine Learning</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Miss: Friday Theory (1 unit)</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-secondary-fixed">88% ➔ 87%</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-fixed to-secondary-fixed-dim rounded-full" style="width: 87%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-secondary-fixed/80 italic">Safe: Proxy chances are high for ML</p>
+</div>
+<!-- Subject 3 -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<div>
+<h4 class="font-body-md font-bold">Compiler Design</h4>
+<p class="font-label-sm text-label-sm text-on-surface-variant">No classes on Friday</p>
+</div>
+<div class="text-right">
+<span class="font-label-md text-label-md text-tertiary">92% ➔ 92%</span>
+</div>
+</div>
+<div class="h-3 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary to-tertiary-container rounded-full" style="width: 92%"></div>
+</div>
+<p class="font-label-sm text-label-sm text-tertiary/80 italic">Zero impact. Pure Profit.</p>
+</div>
+</div>
+<div class="pt-4 border-t border-white/10">
+<div class="p-4 rounded-lg bg-surface-container-highest/30 border-l-4 border-primary">
+<p class="font-label-sm text-label-sm text-primary mb-1 uppercase">STRATEGY NOTE</p>
+<p class="font-body-md italic text-on-surface-variant">"Sacrifice the DS Lab. The DSA professor is attending a conference this Friday anyway."</p>
+</div>
+</div>
+</div>
+<!-- Goa Trip Visualizer (Small Contextual Image) -->
+<div class="relative rounded-xl overflow-hidden aspect-video group">
+<img alt="Goa Beach Scene" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A cinematic sunset view of a tropical Goa beach with silhouetted palm trees against a vibrant purple and orange sky. The scene is shot with high-end photographic lighting, capturing the serene and adventurous mood of a college getaway. The colors are deeply saturated to match the neon cyberpunk minimalism of the UI design, emphasizing themes of freedom and high-energy professional aesthetics." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm7-obylEpnAuGl3iWbwo4YYmVorKxHt6zeOw2iky4B0IvkWbc_mxHCgereWFX3CYw82_QfBfn6PSio7VsxIpa4yjT9RKHmpkWxNKBi-9Lrh1aXi9JBAWppAbre5rYyGNRpPcuvGloBfFq7shUmw1v64361X5nw-3hhLlLinGC9T700xmguOPJ2Fio1dDVNdMwOpog5fOQwXHoJi7zZmYNIhLajx0O1_EcHfyQ_mKP1TzebI_e8tglQ3tONX6cnxFvyAi453uq0co"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary px-3 py-1 rounded-full font-label-sm text-label-sm text-on-primary">DESTINATION: GOA</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-white/10 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Subjects</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary font-bold active:scale-90 transition-transform duration-150" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">event_upcoming</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant/60 dark:text-on-surface-variant/60 hover:bg-white/5 transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+</body></html>

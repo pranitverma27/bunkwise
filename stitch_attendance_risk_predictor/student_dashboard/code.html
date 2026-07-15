@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BunkWise - Student Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#131313",
+                        "tertiary-fixed": "#7df4ff",
+                        "on-primary": "#520072",
+                        "secondary-fixed": "#79ff5b",
+                        "surface-container-high": "#2a2a2a",
+                        "surface": "#131313",
+                        "inverse-primary": "#9800d0",
+                        "secondary-container": "#2ff801",
+                        "surface-container-highest": "#353534",
+                        "on-secondary": "#053900",
+                        "on-surface": "#e5e2e1",
+                        "tertiary": "#00dbe9",
+                        "inverse-surface": "#e5e2e1",
+                        "surface-container-low": "#1c1b1b",
+                        "outline": "#9d8ba0",
+                        "on-tertiary": "#00363a",
+                        "on-tertiary-container": "#000607",
+                        "surface-variant": "#353534",
+                        "outline-variant": "#504254",
+                        "surface-container-lowest": "#0e0e0e",
+                        "primary": "#ebb2ff",
+                        "on-tertiary-fixed": "#002022",
+                        "error-container": "#93000a",
+                        "inverse-on-surface": "#313030",
+                        "error": "#ffb4ab",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-container": "#ffffff",
+                        "surface-tint": "#ebb2ff",
+                        "on-background": "#e5e2e1",
+                        "surface-container": "#201f1f",
+                        "on-surface-variant": "#d4c0d7",
+                        "secondary-fixed-dim": "#2ae500",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#00dbe9",
+                        "on-tertiary-fixed-variant": "#004f54",
+                        "on-secondary-container": "#0f6d00",
+                        "on-secondary-fixed": "#022100",
+                        "primary-fixed": "#f8d8ff",
+                        "on-primary-fixed": "#320047",
+                        "on-secondary-fixed-variant": "#095300",
+                        "surface-dim": "#131313",
+                        "primary-fixed-dim": "#ebb2ff",
+                        "on-primary-fixed-variant": "#74009f",
+                        "surface-bright": "#393939",
+                        "primary-container": "#bc13fe",
+                        "tertiary-container": "#00848d",
+                        "secondary": "#d7ffc5"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "12px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "container-padding": "20px",
+                        "stack-lg": "40px",
+                        "base": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Space Grotesk"],
+                        "headline-lg-mobile": ["Space Grotesk"],
+                        "label-sm": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .neon-glow-safe {
+            box-shadow: 0 0 15px rgba(121, 255, 91, 0.2);
+        }
+        .neon-glow-primary {
+            box-shadow: 0 0 15px rgba(235, 178, 255, 0.2);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-24 md:pb-0 md:pl-64">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-base bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-b border-white/10 md:hidden">
+<span class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-primary">BunkWise</span>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary hover:bg-white/5 transition-colors p-2 rounded-full active:scale-95 duration-200">add</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-white/5 transition-colors p-2 rounded-full">account_circle</button>
+</div>
+</header>
+<!-- Sidebar (Desktop Only) -->
+<aside class="hidden md:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-white/10 bg-surface-container-lowest p-6 z-50">
+<div class="mb-10">
+<span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">BunkWise</span>
+</div>
+<nav class="flex flex-col gap-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-white/5 text-primary font-bold transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-md text-label-md">Subjects</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-md text-label-md">Planner</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">share</span>
+<span class="font-label-md text-label-md">Share Cards</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:bg-white/5 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<div class="mt-auto">
+<button class="w-full flex items-center justify-center gap-2 py-4 rounded-xl bg-primary text-on-primary font-bold hover:opacity-90 transition-all">
+<span class="material-symbols-outlined">edit_calendar</span>
+<span class="font-label-md text-label-md">Override Class</span>
+</button>
+</div>
+</aside>
+<main class="container mx-auto px-container-padding pt-24 md:pt-10 pb-10 max-w-6xl">
+<!-- Risk Score Card -->
+<section class="mb-stack-lg">
+<div class="glass-card neon-glow-safe rounded-[2rem] p-8 relative overflow-hidden">
+<div class="absolute -right-10 -top-10 w-48 h-48 bg-secondary-fixed opacity-10 blur-[80px] rounded-full"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+<div>
+<span class="bg-secondary-fixed/20 text-secondary-fixed font-label-md text-label-sm px-3 py-1 rounded-full uppercase tracking-wider mb-4 inline-block">Safe Zone</span>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-2">All good bhai.</h1>
+<p class="text-on-surface-variant font-body-lg text-body-lg">You have <span class="text-secondary-fixed font-bold">4 safe bunks</span> left for the week.</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<span class="block text-secondary-fixed font-headline-lg text-display-lg leading-none">88%</span>
+<span class="text-on-surface-variant font-label-sm uppercase tracking-tighter">Overall Attendance</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Subjects Grid -->
+<section class="mb-stack-lg">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline-md text-headline-md">Subject Tracker</h2>
+<button class="md:hidden flex items-center gap-1 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm">history</span>
+                    History
+                </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Subject Card 1 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">DSA</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CS-402</span>
+</div>
+<div class="text-right">
+<span class="text-secondary-fixed-dim font-headline-md text-headline-md">82%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-secondary-container to-secondary-fixed-dim rounded-full" style="width: 82%"></div>
+</div>
+<div class="flex items-center justify-between gap-2 mt-2">
+<div class="flex-1 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Attended</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white/10">-</button>
+<span class="font-label-md text-label-md">32</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white/10">+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Bunked</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white/10">-</button>
+<span class="font-label-md text-label-md">7</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 hover:bg-white/10">+</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 rounded-xl border border-primary/30 text-primary font-label-md text-label-md hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit_calendar</span>
+                        Conducted Override
+                    </button>
+</div>
+<!-- Subject Card 2 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Computer Networks</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">CS-403</span>
+</div>
+<div class="text-right">
+<span class="text-tertiary font-headline-md text-headline-md">76%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-tertiary-container to-tertiary rounded-full" style="width: 76%"></div>
+</div>
+<div class="flex items-center justify-between gap-2 mt-2">
+<div class="flex-1 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Attended</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">-</button>
+<span class="font-label-md text-label-md">28</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Bunked</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">-</button>
+<span class="font-label-md text-label-md">9</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">+</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 rounded-xl border border-primary/30 text-primary font-label-md text-label-md hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit_calendar</span>
+                        Conducted Override
+                    </button>
+</div>
+<!-- Subject Card 3 -->
+<div class="glass-card rounded-2xl p-6 flex flex-col gap-4 border-error/20">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-headline-md text-headline-md mb-1">Mathematics IV</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant">MA-401</span>
+</div>
+<div class="text-right">
+<span class="text-error font-headline-md text-headline-md">64%</span>
+</div>
+</div>
+<div class="w-full h-3 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-error-container to-error rounded-full" style="width: 64%"></div>
+</div>
+<div class="flex items-center justify-between gap-2 mt-2">
+<div class="flex-1 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Attended</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">-</button>
+<span class="font-label-md text-label-md">21</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">+</button>
+</div>
+</div>
+<div class="flex-1 flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant mb-1">Bunked</span>
+<div class="flex items-center gap-3">
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">-</button>
+<span class="font-label-md text-label-md">12</span>
+<button class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10">+</button>
+</div>
+</div>
+</div>
+<button class="w-full mt-2 py-2.5 rounded-xl border border-primary/30 text-primary font-label-md text-label-md hover:bg-primary/5 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">edit_calendar</span>
+                        Conducted Override
+                    </button>
+</div>
+</div>
+</section>
+<!-- Bunk Optimizer -->
+<section class="mb-10">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+<h2 class="font-headline-md text-headline-md">Bunk Optimizer</h2>
+</div>
+<div class="glass-card rounded-[1.5rem] overflow-hidden">
+<div class="bg-primary/10 border-b border-white/10 px-6 py-4 flex items-center justify-between">
+<span class="font-label-md text-label-md text-primary">Long Weekend Detected!</span>
+<span class="font-label-sm text-label-sm bg-primary/20 text-primary px-3 py-1 rounded-full">Coming Soon: March 24-27</span>
+</div>
+<div class="p-6 md:flex gap-8 items-center">
+<div class="mb-6 md:mb-0">
+<img class="w-full md:w-64 h-40 object-cover rounded-xl border border-white/10" data-alt="A cinematic low angle shot of a luxury travel bus driving on a coastal highway during a sunset. The lighting is warm and golden, reflecting the neon purple and teal accents of the UI style. The mood is adventurous and serene, suggesting a perfect student getaway." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC49nXF1TR4Y1eo5TvxhU0npzscOCNtC8ktEQyJpDylLHVRe5v1D6Xjvf3lHNNLWznU8r1-4Le_hQg041U-5MSR9FkHOiFWLM3fh0VEjkhzTD0Jl_5KyqdiOg8NYXqezIabHj-jr-6mexJ7qkWc-vqijiPE_sugQIEdukWVauD5wkXv0pjcE_GDjD_0xOSsrtykWMJ_zxrGySGF_9XoMYBCQkZzlcDn0UrGscr0sGqlcjUqUiW2GeRR5tLYTbZbi6f9p6D7BD9mZl0"/>
+</div>
+<div class="flex-1">
+<h3 class="font-headline-md text-headline-md mb-2">Holi Break Maximizer</h3>
+<p class="text-on-surface-variant font-body-md text-body-md mb-4">Bunk just 1 lecture on Friday (Mathematics) to get a 4-day stretch. Your attendance will drop only by 0.8%.</p>
+<div class="flex flex-wrap gap-4">
+<button class="px-6 py-2.5 bg-primary text-on-primary font-bold rounded-xl hover:scale-95 transition-transform">Plan Trip</button>
+<button class="px-6 py-2.5 border border-white/10 text-on-surface font-bold rounded-xl hover:bg-white/5 transition-all">Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface/80 dark:bg-surface/80 backdrop-blur-xl border-t border-white/10 rounded-t-xl md:hidden">
+<div class="flex flex-col items-center justify-center text-primary font-bold scale-90 transition-transform duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">menu_book</span>
+<span class="font-label-sm text-label-sm">Subjects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60 hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</footer>
+<!-- Global Floating Action Button (Mobile Only) -->
+<button class="md:hidden fixed bottom-24 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg neon-glow-primary flex items-center justify-center z-40 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">edit_calendar</span>
+</button>
+</body></html>
