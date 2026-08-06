@@ -1,26 +1,168 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
+/* ─── Design Tokens (Tailwind v4) ─────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Colors */
+  --color-background: #131313;
+  --color-surface: #131313;
+  --color-primary: #ebb2ff;
+  --color-primary-container: #bc13fe;
+  --color-on-primary: #520072;
+  --color-secondary-fixed: #79ff5b;
+  --color-tertiary: #00dbe9;
+  --color-error: #ffb4ab;
+  --color-on-surface-variant: #d4c0d7;
+  --color-surface-container-highest: #353534;
+
+  /* Fonts */
+  --font-display: "Space Grotesk", sans-serif;
+  --font-headline: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Spacing (using standard v4 utilities mostly, but defining custom tokens) */
+  --spacing-stack-sm: 12px;
+  --spacing-stack-md: 24px;
+  --spacing-stack-lg: 40px;
+  --spacing-gutter: 16px;
+  --spacing-container-padding: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ─── Global Base ───────────────────────────────────────────── */
+body {
+  background-color: #131313;
+  color: #e5e2e1;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Material Symbols ───────────────────────────────────────── */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+  vertical-align: middle;
+}
+
+/* ─── Glassmorphism ──────────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.glass-card-active {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(40px) !important;
+  -webkit-backdrop-filter: blur(40px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.glass-nav {
+  background: rgba(19, 19, 19, 0.8) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ─── Neon Glows ─────────────────────────────────────────────── */
+.neon-glow-purple {
+  box-shadow: 0 0 20px rgba(188, 19, 254, 0.3) !important;
+}
+.neon-glow-safe {
+  box-shadow: 0 0 20px rgba(121, 255, 91, 0.2) !important;
+}
+.neon-glow-red {
+  box-shadow: 0 0 20px rgba(255, 180, 171, 0.2) !important;
+}
+
+/* ─── Gradients ──────────────────────────────────────────────── */
+.primary-gradient {
+  background: linear-gradient(135deg, #bc13fe 0%, #74009f 100%) !important;
+}
+.safe-gradient {
+  background: linear-gradient(90deg, #2ff801 0%, #79ff5b 100%) !important;
+}
+.danger-gradient {
+  background: linear-gradient(90deg, #93000a 0%, #ffb4ab 100%) !important;
+}
+
+/* ─── Typography Utility Shorthands ──────────────────────────── */
+.font-display-lg { font-family: "Space Grotesk"; font-size: 48px; font-weight: 700; }
+.font-headline-lg { font-family: "Space Grotesk"; font-size: 32px; font-weight: 700; }
+.font-headline-md { font-family: "Space Grotesk"; font-size: 24px; font-weight: 600; }
+.font-label-md { font-family: "JetBrains Mono"; font-size: 14px; font-weight: 500; }
+.font-label-sm { font-family: "JetBrains Mono"; font-size: 12px; font-weight: 500; }
+
+/* ─── Misc ─────────────────────────────────────────────────── */
+.warning-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(147, 0, 10, 0.1),
+    rgba(147, 0, 10, 0.1) 10px,
+    rgba(255, 180, 171, 0.05) 10px,
+    rgba(255, 180, 171, 0.05) 20px
+  );
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 12px);
+}
+
+/* ─── Hide Scrollbar Utilities ─────────────────────────────── */
+.hide-scrollbar::-webkit-scrollbar,
+.scrollbar-hide::-webkit-scrollbar {
+  display: none !important;
+}
+.hide-scrollbar,
+.scrollbar-hide {
+  -ms-overflow-style: none !important; /* IE and Edge */
+  scrollbar-width: none !important; /* Firefox */
+}
+
+/* ─── Premium Custom Scrollbar ──────────────────────────────── */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 5px !important;
+  width: 5px !important;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 99px !important;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(188, 19, 254, 0.3) !important; /* Subtle purple thumb */
+  border-radius: 99px !important;
+  transition: background 0.2s ease;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(188, 19, 254, 0.6) !important;
+}
+.custom-scrollbar {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(188, 19, 254, 0.3) rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Hide scrollbar on touch devices (mobile/tablet) to keep native overlay scrolling clean */
+@media (hover: none) {
+  .custom-scrollbar::-webkit-scrollbar {
+    display: none !important;
+  }
+  .custom-scrollbar {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
+
+

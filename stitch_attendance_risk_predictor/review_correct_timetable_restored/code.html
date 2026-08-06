@@ -1,0 +1,381 @@
+<html class="dark"><head></head><body class="bg-background text-on-background font-body-md selection:bg-primary selection:text-on-primary">```html
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "background": "#131313",
+            "tertiary-fixed": "#7df4ff",
+            "on-primary": "#520072",
+            "secondary-fixed": "#79ff5b",
+            "surface-container-high": "#2a2a2a",
+            "surface": "#131313",
+            "inverse-primary": "#9800d0",
+            "secondary-container": "#2ff801",
+            "surface-container-highest": "#353534",
+            "on-secondary": "#053900",
+            "on-surface": "#e5e2e1",
+            "tertiary": "#00dbe9",
+            "inverse-surface": "#e5e2e1",
+            "surface-container-low": "#1c1b1b",
+            "outline": "#9d8ba0",
+            "on-tertiary": "#00363a",
+            "on-tertiary-container": "#000607",
+            "surface-variant": "#353534",
+            "outline-variant": "#504254",
+            "surface-container-lowest": "#0e0e0e",
+            "primary": "#ebb2ff",
+            "on-tertiary-fixed": "#002022",
+            "error-container": "#93000a",
+            "inverse-on-surface": "#313030",
+            "error": "#ffb4ab",
+            "on-error-container": "#ffdad6",
+            "on-primary-container": "#ffffff",
+            "surface-tint": "#ebb2ff",
+            "on-background": "#e5e2e1",
+            "surface-container": "#201f1f",
+            "on-surface-variant": "#d4c0d7",
+            "secondary-fixed-dim": "#2ae500",
+            "on-error": "#690005",
+            "tertiary-fixed-dim": "#00dbe9",
+            "on-tertiary-fixed-variant": "#004f54",
+            "on-secondary-container": "#0f6d00",
+            "on-secondary-fixed": "#022100",
+            "primary-fixed": "#f8d8ff",
+            "on-primary-fixed": "#320047",
+            "on-secondary-fixed-variant": "#095300",
+            "surface-dim": "#131313",
+            "primary-fixed-dim": "#ebb2ff",
+            "on-primary-fixed-variant": "#74009f",
+            "surface-bright": "#393939",
+            "primary-container": "#bc13fe",
+            "tertiary-container": "#00848d",
+            "secondary": "#d7ffc5"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "stack-sm": "12px",
+            "stack-md": "24px",
+            "gutter": "16px",
+            "container-padding": "20px",
+            "stack-lg": "40px",
+            "base": "8px"
+          },
+          "fontFamily": {
+            "headline-md": ["Space Grotesk"],
+            "body-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-lg": ["Space Grotesk"],
+            "label-md": ["JetBrains Mono"],
+            "display-lg": ["Space Grotesk"],
+            "headline-lg-mobile": ["Space Grotesk"],
+            "label-sm": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+            "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+            "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "700"}],
+            "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+            "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+            "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .glass-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    input:focus {
+      outline: none;
+      border-bottom: 2px solid #ebb2ff !important;
+      box-shadow: 0 4px 12px -4px rgba(235, 178, 255, 0.4);
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<!-- TopNavBar (Shared Component Shell) -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-gutter py-base bg-surface/80 backdrop-blur-xl border-b border-white/10">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md-mobile font-bold tracking-tight text-primary">BunkWise</span>
+<div class="hidden md:flex items-center px-3 py-1 glass-card rounded-full border-none">
+<span class="material-symbols-outlined text-tertiary mr-2 text-sm">auto_awesome</span>
+<span class="font-label-md text-label-md text-on-surface-variant">AI Parsing Complete</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-primary">add</span>
+</button>
+<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">account_circle</span>
+</button>
+</div>
+</header>
+<main class="pt-24 pb-32 px-gutter max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-stack-md">
+<!-- Content Section: Subject Grid -->
+<section class="lg:col-span-8 space-y-stack-md">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-stack-sm">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Review Subjects</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Verify the details extracted from your timetable image.</p>
+</div>
+<div class="flex items-center gap-2 glass-card px-4 py-2 rounded-xl">
+<span class="font-label-sm text-label-sm text-on-surface-variant">6 Subjects Found</span>
+</div>
+</div>
+<!-- Bento Grid for Subject Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Subject Card 1 -->
+<div class="glass-card rounded-xl p-5 group hover:border-primary/40 transition-all duration-300">
+<div class="space-y-4">
+<div class="relative">
+<label class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1 block">Subject Name</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-headline-md text-headline-md text-on-surface bg-transparent transition-all" type="text" value="Advanced Mathematics IV"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Course Code</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent uppercase" type="text" value="MATH-402"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Type</label>
+<select class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent appearance-none">
+<option selected="">Lecture</option>
+<option>Laboratory</option>
+<option>Tutorial</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-2 block">Extracted Slots</label>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  Mon 09:00 <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  Wed 11:30 <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="border border-dashed border-white/20 px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/5 transition-colors">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Subject Card 2 -->
+<div class="glass-card rounded-xl p-5 group hover:border-tertiary/40 transition-all duration-300">
+<div class="space-y-4">
+<div class="relative">
+<label class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1 block">Subject Name</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-headline-md text-headline-md text-on-surface bg-transparent" type="text" value="Compiler Design Lab"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Course Code</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent uppercase" type="text" value="CS-301L"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Type</label>
+<select class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent appearance-none">
+<option>Lecture</option>
+<option selected="">Laboratory</option>
+<option>Tutorial</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-2 block">Extracted Slots</label>
+<div class="flex flex-wrap gap-2">
+<span class="bg-tertiary/20 text-tertiary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  Tue 14:00 <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="border border-dashed border-white/20 px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/5 transition-colors">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Subject Card 3 -->
+<div class="glass-card rounded-xl p-5 group border-error/20">
+<div class="space-y-4">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-error text-sm">warning</span>
+<span class="font-label-sm text-label-sm text-error">Unclear Extraction</span>
+</div>
+<div class="relative">
+<label class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1 block">Subject Name</label>
+<input class="w-full bg-black/20 border-b border-error/50 py-1 font-headline-md text-headline-md text-on-surface bg-transparent" placeholder="Enter Subject Name" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Course Code</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent" type="text" value="SOC-110"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Type</label>
+<select class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent appearance-none">
+<option selected="">Lecture</option>
+<option>Tutorial</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-2 block">Extracted Slots</label>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  Fri 10:00 <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="border border-dashed border-white/20 px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/5 transition-colors">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Subject Card 4 -->
+<div class="glass-card rounded-xl p-5 group hover:border-primary/40 transition-all duration-300">
+<div class="space-y-4">
+<div class="relative">
+<label class="font-label-sm text-label-sm text-tertiary uppercase tracking-wider mb-1 block">Subject Name</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-headline-md text-headline-md text-on-surface bg-transparent" type="text" value="System Security"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Course Code</label>
+<input class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent uppercase" type="text" value="SEC-502"/>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-1 block">Type</label>
+<select class="w-full bg-black/20 border-b border-white/10 py-1 font-label-md text-label-md text-on-surface bg-transparent appearance-none">
+<option selected="">Lecture</option>
+<option>Laboratory</option>
+</select>
+</div>
+</div>
+<div>
+<label class="font-label-sm text-label-sm text-on-surface-variant/60 mb-2 block">Extracted Slots</label>
+<div class="flex flex-wrap gap-2">
+<span class="bg-primary/20 text-primary px-3 py-1 rounded-full font-label-sm text-label-sm flex items-center gap-1">
+                  Thu 11:30 <button class="hover:text-on-surface"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<button class="border border-dashed border-white/20 px-3 py-1 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:bg-white/5 transition-colors">+ Add</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Add New Subject Trigger -->
+<button class="w-full py-6 border-2 border-dashed border-white/10 rounded-xl flex items-center justify-center gap-3 text-on-surface-variant hover:bg-white/5 hover:border-primary/40 transition-all group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">add_circle</span>
+<span class="font-label-md text-label-md">Manually Add Subject</span>
+</button>
+</section>
+<!-- Sidebar Section: Mark Holidays -->
+<aside class="lg:col-span-4 space-y-stack-md">
+<div class="glass-card rounded-2xl p-6 sticky top-24">
+<h2 class="font-headline-md text-headline-md text-tertiary mb-2">Mark Holidays</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-stack-md">Select institutional holidays or known leaves to adjust targets.</p>
+<!-- Minimalist Calendar UI -->
+<div class="space-y-4">
+<div class="flex justify-between items-center px-2">
+<span class="font-label-md text-label-md text-on-surface">September 2024</span>
+<div class="flex gap-1">
+<button class="p-1 hover:bg-white/10 rounded"><span class="material-symbols-outlined text-sm">chevron_left</span></button>
+<button class="p-1 hover:bg-white/10 rounded"><span class="material-symbols-outlined text-sm">chevron_right</span></button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-1 text-center">
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">M</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">T</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">W</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">T</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">F</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40">S</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant/40 text-error">S</span>
+<!-- Calendar Days -->
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-on-surface-variant/40">28</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-on-surface-variant/40">29</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-on-surface-variant/40">30</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-on-surface-variant/40">31</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">1</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">2</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-error/60">3</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">4</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md bg-secondary-container/20 text-secondary-container border border-secondary-container/40">5</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">6</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">7</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">8</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">9</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-error/60">10</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">11</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">12</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">13</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">14</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md bg-secondary-container/20 text-secondary-container border border-secondary-container/40">15</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md hover:bg-white/5">16</button>
+<button class="aspect-square flex items-center justify-center rounded-lg font-label-md text-label-md text-error/60">17</button>
+</div>
+</div>
+<div class="mt-stack-md pt-stack-md border-t border-white/5">
+<div class="flex items-center gap-2 mb-4">
+<span class="w-3 h-3 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Selected Holidays: 2 days</span>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-headline-md text-headline-md rounded-xl hover:shadow-[0_0_20px_rgba(235,178,255,0.4)] transition-all flex items-center justify-center gap-2">
+            Save &amp; Go to Dashboard
+            <span class="material-symbols-outlined">rocket_launch</span>
+</button>
+</div>
+</div>
+<!-- Quick Analysis Card -->
+<div class="glass-card rounded-2xl p-6 bg-gradient-to-br from-tertiary/10 to-transparent">
+<h3 class="font-label-md text-label-md text-tertiary mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">insights</span>
+          PRELIMINARY ANALYSIS
+        </h3>
+<p class="font-body-md text-body-md text-on-surface leading-relaxed">
+          Based on 6 subjects and 4.2 weeks of semester remaining, you'll need at least <span class="text-primary font-bold">75% attendance</span> to stay in the "Chill Zone".
+        </p>
+</div>
+</aside>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 pb-safe bg-surface/80 backdrop-blur-xl border-t border-white/10 rounded-t-xl">
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu_book</span>
+<span class="font-label-sm text-label-sm">Subjects</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">event_upcoming</span>
+<span class="font-label-sm text-label-sm">Planner</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant/60">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</div>
+</nav>
+<!-- Visual Polish: Gradient Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/10 blur-[120px] pointer-events-none rounded-full z-[-1]"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-tertiary/10 blur-[120px] pointer-events-none rounded-full z-[-1]"></div>
+```</body></html>
