@@ -140,4 +140,22 @@
 
 ---
 
+## Session 5 — 2026-08-07 (Fri)
+
+### 02:40 IST — Code Saved to GitHub
+- **Action**: Saved all current code locally and pushed to GitHub repository at `https://github.com/pranitverma27-max/bunkwise` to ensure full recoverability.
+
+### 03:20 IST — Hybrid Parser Implementation
+- **Decision**: Pivoted to a **hybrid parser** approach.
+  - Local OCR libraries (like EasyOCR) struggle with very tiny fonts and grid-lines in timetable photos.
+  - Multimodal AI (Gemini) remains the most accurate for photos and scanned images.
+  - A Python-based parser (`pdfplumber`) is 100% accurate for vector/text PDFs.
+- **Action**: Refactored `scripts/parse_timetable.py` to use `pdfplumber` to extract table data directly from text PDFs.
+- **Action**: Updated Next.js server action `src/app/actions/parse-timetable.ts` to coordinate the hybrid flow:
+  1. Route PDFs to the Python parser script first.
+  2. If the PDF lacks text (scanned) or a photo image is uploaded, fallback automatically to Gemini 3.5 Flash.
+- **Verification**: Verified TypeScript compilation (`npx tsc --noEmit`) passes cleanly.
+
+---
+
 *— End of log. Updated entries will be appended below this line as work progresses. —*
